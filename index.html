@@ -660,7 +660,10 @@
       gap: var(--space-8);
       min-width: 0;
     }
-    .program-shell * { word-break: break-word; overflow-wrap: anywhere; }
+    .program-shell p,
+    .program-shell h3,
+    .program-shell h4,
+    .program-shell li { word-break: break-word; overflow-wrap: break-word; }
     .program-overview {
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
@@ -758,9 +761,10 @@
       justify-content: space-between;
       gap: var(--space-4);
       align-items: center;
+      margin-bottom: var(--space-5);
     }
     .program-tabs {
-      display: inline-flex;
+      display: flex;
       flex-wrap: wrap;
       gap: var(--space-3);
       padding: 0.35rem;
@@ -777,6 +781,7 @@
       color: var(--color-text-muted);
       font-weight: 700;
       text-align: left;
+      white-space: nowrap;
     }
     .tab-button small {
       display: block;
@@ -809,6 +814,8 @@
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
+      white-space: nowrap;
+      flex-shrink: 0;
       transition: background var(--transition-interactive), color var(--transition-interactive), border-color var(--transition-interactive);
     }
     .filter-button.active {
@@ -1029,20 +1036,22 @@
         flex-direction: column;
         gap: var(--space-3);
       }
+      /* Both rows scroll horizontally — no column breaks */
       .program-tabs,
       .program-filters {
         width: 100%;
-      }
-      .program-filters {
         overflow-x: auto;
         flex-wrap: nowrap;
-        padding-bottom: 2px;
         scrollbar-width: none;
+        padding-bottom: 2px;
       }
+      .program-tabs::-webkit-scrollbar,
       .program-filters::-webkit-scrollbar { display: none; }
+      /* Tabs: shrink naturally, don't grow to fill */
       .tab-button {
         min-width: unset;
-        flex: 1 1 180px;
+        flex: 0 0 auto;
+        padding: 0.75rem 1.1rem;
       }
     }
 
