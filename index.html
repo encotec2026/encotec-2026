@@ -34,6 +34,7 @@
       --space-8: 2rem;
       --space-10: 2.5rem;
       --space-12: 3rem;
+      --space-14: 3.5rem;
       --space-16: 4rem;
       --space-20: 5rem;
       --space-24: 6rem;
@@ -145,6 +146,7 @@
       position: relative;
       isolation: isolate;
       overflow: clip;
+      padding-top: 84px; /* height of fixed topbar */
     }
     .site-shell::before,
     .site-shell::after {
@@ -177,11 +179,70 @@
     }
 
     
+    /* ── Skip link ── */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: var(--space-4);
+      z-index: 200;
+      padding: 0.6rem 1.2rem;
+      background: var(--color-gold);
+      color: #122016;
+      font-weight: 700;
+      border-radius: var(--radius-md);
+      transition: top 0.2s;
+    }
     .skip-link:focus { top: var(--space-4); }
 
-    .topbar {
-      position: sticky;
+    /* ── Scroll progress bar ── */
+    .scroll-progress {
+      position: fixed;
       top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--color-gold), var(--color-primary));
+      z-index: 100;
+      transition: width 0.1s linear;
+      pointer-events: none;
+    }
+
+    /* ── Scroll-to-top button ── */
+    .scroll-top-btn {
+      position: fixed;
+      bottom: var(--space-6);
+      right: var(--space-5);
+      z-index: 50;
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(135deg, rgba(197,173,50,0.22), rgba(62,168,125,0.18));
+      border: 1px solid rgba(197,173,50,0.36);
+      color: var(--color-text);
+      display: grid;
+      place-items: center;
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-md);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: opacity 0.3s cubic-bezier(0.16,1,0.3,1), transform 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .scroll-top-btn.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .scroll-top-btn:hover {
+      background: linear-gradient(135deg, rgba(197,173,50,0.38), rgba(62,168,125,0.3));
+    }
+
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
       z-index: 40;
       backdrop-filter: blur(18px);
       background: rgba(5, 16, 13, 0.66);
@@ -424,12 +485,13 @@
     }
 
     .section {
-      padding-block: clamp(var(--space-10), 8vw, var(--space-20));
+      padding-top: clamp(var(--space-16), 10vw, var(--space-24));
+      padding-bottom: clamp(var(--space-10), 6vw, var(--space-16));
     }
     .section-header {
       display: grid;
       gap: var(--space-3);
-      margin-bottom: var(--space-8);
+      margin-bottom: var(--space-6);
       max-width: 65ch;
     }
     .section-kicker {
@@ -567,6 +629,7 @@
       .topbar-inner { min-height: 76px; }
       .brand-mark { width: 54px; height: 54px; }
       .hero-title { max-width: 12ch; }
+      .site-shell { padding-top: 76px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -724,6 +787,9 @@
       background: rgba(255,255,255,0.04);
       color: var(--color-text-muted);
       font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
       transition: background var(--transition-interactive), color var(--transition-interactive), border-color var(--transition-interactive);
     }
     .filter-button.active {
@@ -731,6 +797,15 @@
       border-color: rgba(197, 173, 50, 0.32);
       color: var(--color-text);
     }
+    .filter-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .filter-dot.interno { background: #3ecf6e; }
+    .filter-dot.externo { background: #c5ad32; }
+    .filter-dot.apoio   { background: #91a59a; }
     .program-day {
       display: none;
     }
@@ -763,6 +838,14 @@
     .program-list {
       display: grid;
       gap: var(--space-4);
+    }
+    .filter-empty {
+      padding: var(--space-6);
+      text-align: center;
+      color: var(--color-text-faint);
+      font-size: var(--text-sm);
+      border: 1px dashed var(--color-border);
+      border-radius: var(--radius-lg);
     }
     .program-item {
       display: grid;
@@ -924,15 +1007,28 @@
       }
       .program-toolbar {
         align-items: stretch;
+        flex-direction: column;
+        gap: var(--space-3);
       }
       .program-tabs,
       .program-filters {
         width: 100%;
       }
+      .program-filters {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 2px;
+        scrollbar-width: none;
+      }
+      .program-filters::-webkit-scrollbar { display: none; }
       .tab-button {
         min-width: unset;
         flex: 1 1 180px;
       }
+    }
+
+    @media (max-width: 640px) {
+      .program-kpis { grid-template-columns: repeat(2, 1fr); }
     }
 
 
@@ -1091,6 +1187,7 @@
       .carousel-stage { aspect-ratio: 4/3; }
       .carousel-thumb { flex: 0 0 60px; height: 44px; }
       .edition-stats { grid-template-columns: 1fr 1fr; }
+      .slide-caption { padding: var(--space-4) var(--space-5); }
     }
 
 
@@ -1380,7 +1477,7 @@
     @media (max-width: 768px) {
       .hero-content { padding: var(--space-10) var(--space-5) var(--space-8); }
       .hero-title { font-size: clamp(2.8rem, 12vw, 5rem); }
-      .section { padding: var(--space-14) 0; }
+      .section { padding-top: var(--space-12); padding-bottom: var(--space-8); }
       .section-title { font-size: clamp(1.6rem, 6vw, 2.4rem); }
       .program-layout { grid-template-columns: 1fr; }
       .program-sidebar { display: none; }
@@ -1392,165 +1489,41 @@
       .edition-stats { grid-template-columns: repeat(2, 1fr); }
       .carousel-arrow { width: 38px; height: 38px; }
     }
-    @media (max-width: 480px) {
-      .hero-title { font-size: clamp(2.2rem, 10vw, 3.5rem); }
-      .nav-links { display: none; }
-      .countdown-units { gap: var(--space-2); }
-      .countdown-unit { min-width: 44px; }
-      .countdown-num { font-size: clamp(1.6rem, 8vw, 2.4rem); }
-      .speakers-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ── Scroll-to-top button ── */
-    .scroll-top-btn {
-      position: fixed;
-      bottom: var(--space-6);
-      right: var(--space-6);
-      width: 46px;
-      height: 46px;
-      border-radius: var(--radius-full);
-      background: rgba(62,168,125,0.18);
-      border: 1px solid rgba(62,168,125,0.3);
-      color: var(--color-green);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      backdrop-filter: blur(12px);
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(12px);
-      transition: opacity var(--transition-interactive), transform var(--transition-interactive);
-      z-index: 90;
-    }
-    .scroll-top-btn.visible {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0);
-    }
-    .scroll-top-btn:hover {
-      background: rgba(62,168,125,0.3);
-    }
-
-    /* ── Progress bar ── */
-    .scroll-progress {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 3px;
-      width: 0%;
-      background: linear-gradient(90deg, var(--color-green), var(--color-gold));
-      z-index: 200;
-      transition: width 0.1s linear;
-    }
-
-  
-    /* --- COMPREHENSIVE RESPONSIVE FIXES --- */
-    
-    /* Ensure images never break their containers */
-    img, svg, picture, video {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    /* Prevent text overflows */
-    p, h1, h2, h3, h4, h5, h6, span, a, li {
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-    }
-
-    /* Mobile adjustments */
-    @media (max-width: 768px) {
-      .container {
-        padding-inline: var(--space-4); /* Ensure enough padding on small screens */
-      }
-      
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: var(--space-6);
-        text-align: center; /* Better readability on mobile */
-      }
-      
-      .hero-actions {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      
-      .hero-actions .button-primary, 
-      .hero-actions .button-secondary {
-        width: 100%;
-        text-align: center;
-        justify-content: center;
-      }
-
-      .panel-grid {
-        grid-template-columns: 1fr;
-        gap: var(--space-4);
-      }
-      
-      .countdown-units {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: var(--space-2);
-      }
-      
-      .programacao-grid, .speakers-grid, .estat-grid {
-        grid-template-columns: 1fr !important; /* Force single column on mobile */
-      }
-      
-      .timeline-track {
-        left: 20px; /* Adjust timeline line for mobile */
-      }
-      
-      .timeline-event {
-        padding-left: 50px; /* Make room for the line */
-      }
-      
-      .timeline-event::before {
-        left: 14px; /* Adjust dot position */
-      }
-      
-      .day-card {
-        padding: var(--space-4);
-      }
-      
-      /* Ensure footer doesn't break */
-      .footer-inner {
-        flex-direction: column !important;
-        align-items: center !important;
-        text-align: center;
-        gap: var(--space-6);
-      }
-      
-      /* Fix potential overlaps in topbar */
-      .topbar {
-        position: sticky;
-        top: 0;
-      }
-      
-      /* Prevent hero content from hiding under mobile nav or getting cut off */
-      .hero {
-        min-height: auto;
-        padding-top: var(--space-12);
-        padding-bottom: var(--space-10);
-      }
-      
-      /* Scale down massive icons if they break mobile layout */
-      img[alt^="Ícone Camisa"] {
-        width: 3em !important;
-        height: 3em !important;
-      }
+    /* Fix for "experiências" breaking the last letter */
+    .hero-title .accent {
+      display: inline-block;
+      white-space: nowrap;
     }
     
     @media (max-width: 480px) {
-      /* Extra small devices */
+    /* Extra small devices */
       .hero-title {
-        font-size: clamp(2rem, 10vw, 3rem) !important;
+        font-size: clamp(1.8rem, 9vw, 2.8rem) !important;
+        word-break: keep-all;
+        overflow-wrap: normal;
       }
       
       .section-title {
-        font-size: clamp(1.8rem, 8vw, 2.5rem);
+        font-size: clamp(1.6rem, 8vw, 2.2rem);
       }
+
+      /* Countdown: prevent horizontal overflow */
+      .countdown-bar { gap: var(--space-3); }
+      .countdown-units { gap: var(--space-2); }
+      .countdown-unit { min-width: 40px; }
+      .countdown-num { font-size: clamp(1.5rem, 7vw, 2rem); }
+      .countdown-sep { font-size: 1.4rem; margin-bottom: 0.9rem; }
+      .countdown-label,
+      .countdown-event-name { font-size: 0.72rem; letter-spacing: 0.05em; }
+
+      /* Hero accent word — allow wrap on very small screens */
+      .hero-title .accent { white-space: normal; }
+
+      /* Edition stats single column on tiny screens */
+      .edition-stats { grid-template-columns: 1fr; }
+
+      /* Scroll-to-top position */
+      .scroll-top-btn { bottom: var(--space-4); right: var(--space-4); width: 42px; height: 42px; }
     }
 
   </style>
@@ -1710,7 +1683,18 @@
                 <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="dia-3" id="tab-dia-3" data-day="dia-3">DIA 3</button>
               </div>
 
-              
+              <div class="program-filters" role="group" aria-label="Filtrar por tipo">
+                <button class="filter-button active" type="button" data-filter="all">Todos</button>
+                <button class="filter-button" type="button" data-filter="interno">
+                  <span class="filter-dot interno"></span>Palestras internas
+                </button>
+                <button class="filter-button" type="button" data-filter="externo">
+                  <span class="filter-dot externo"></span>Palestras externas
+                </button>
+                <button class="filter-button" type="button" data-filter="apoio">
+                  <span class="filter-dot apoio"></span>Apoio
+                </button>
+              </div>
             </div>
 
             <div class="program-days">
@@ -2343,36 +2327,10 @@
             <p class="section-description">Três edições de conhecimento compartilhado, integração no campo e conexão entre os times técnicos do Grupo Locks. Cada encontro deixa registros que reforçam nosso propósito.</p>
           </div>
 
-          <div class="carousel-wrap fade-in" aria-label="Galeria de fotos das edições anteriores">
+          <div class="carousel-wrap" aria-label="Galeria de fotos das edições anteriores">
             <div class="carousel-stage">
-              <div class="carousel-track" id="carouselTrack">
-
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              </div>
-              <div class="carousel-slide active" data-index="0">
-                <img src="https://lh3.googleusercontent.com/d/1-kk_k3etH1Bcgc9KmrIhq2ZiK0jHeMV7" alt="Foto 1 — ENCOTEC 2026" loading="lazy">
+                            <div class="carousel-slide active" data-index="0">
+                <img src="https://lh3.googleusercontent.com/d/1-kk_k3etH1Bcgc9KmrIhq2ZiK0jHeMV7" alt="Foto 1 — ENCOTEC 2026" loading="eager">
                 <div class="slide-caption">                  <p>Recordações de edições anteriores</p>
                 </div>
               </div>
@@ -2620,7 +2578,7 @@
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
               </button>
 
-              <div class="carousel-counter" id="carouselCounter">1 / 23</div>
+              <div class="carousel-counter" id="carouselCounter"></div>
             </div>
 
             <div class="carousel-thumbs" id="carouselThumbs" role="tablist" aria-label="Miniaturas">
@@ -3176,6 +3134,23 @@
           const shouldShow = filter === 'all' || type === filter;
           item.classList.toggle('is-hidden', !shouldShow);
         });
+
+        // Show empty state per day if no items match
+        dayPanels.forEach(panel => {
+          if (!panel.classList.contains('active')) return;
+          const visible = [...panel.querySelectorAll('.program-item:not(.is-hidden)')].length;
+          let emptyEl = panel.querySelector('.filter-empty');
+          if (visible === 0) {
+            if (!emptyEl) {
+              emptyEl = document.createElement('p');
+              emptyEl.className = 'filter-empty';
+              emptyEl.textContent = 'Nenhum item para este filtro neste dia.';
+              panel.querySelector('.program-list')?.appendChild(emptyEl);
+            }
+          } else {
+            if (emptyEl) emptyEl.remove();
+          }
+        });
       }
 
       function activateDay(dayId) {
@@ -3260,6 +3235,7 @@
         const total = slides.length;
         let current = 0;
         let autoTimer = null;
+        if (counter) counter.textContent = `1 / ${total}`;
 
         function goTo(idx) {
           slides[current].classList.remove('active');
