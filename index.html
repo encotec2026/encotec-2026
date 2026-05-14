@@ -176,6 +176,8 @@
     .container {
       width: min(calc(100% - 2rem), var(--content-default));
       margin-inline: auto;
+      min-width: 0;
+      box-sizing: border-box;
     }
 
     
@@ -346,19 +348,26 @@
 
     .mobile-panel {
       display: grid;
-      gap: var(--space-2);
-      padding: 0 0 var(--space-4);
+      gap: 0;
+      padding: 0;
       max-height: 0;
       overflow: hidden;
-      transition: max-height 300ms cubic-bezier(0.16, 1, 0.3, 1);
+      transition: max-height 350ms cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .mobile-panel.open { max-height: 24rem; }
+    .mobile-panel.open { max-height: 32rem; }
     .mobile-panel a {
-      padding: var(--space-3) 0;
+      display: flex;
+      align-items: center;
+      padding: var(--space-4) 0;
       border-bottom: 1px solid var(--color-divider);
       color: var(--color-text-muted);
-      font-size: var(--text-sm);
+      font-size: var(--text-base);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      min-height: 48px;
     }
+    .mobile-panel a:last-child { border-bottom: none; }
+    .mobile-panel a[aria-current="page"] { color: var(--color-text); }
 
     .hero {
       padding-block: clamp(var(--space-12), 10vw, var(--space-24));
@@ -371,6 +380,7 @@
       gap: var(--space-10);
       align-items: end;
     }
+    .hero-grid > * { min-width: 0; }
     .eyebrow {
       display: inline-flex;
       align-items: center;
@@ -648,7 +658,9 @@
     .program-shell {
       display: grid;
       gap: var(--space-8);
+      min-width: 0;
     }
+    .program-shell * { word-break: break-word; overflow-wrap: anywhere; }
     .program-overview {
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
@@ -657,6 +669,8 @@
     }
     .program-panel,
     .program-aside {
+      min-width: 0; /* prevent grid blowout */
+      overflow: hidden;
       background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
       border: 1px solid var(--color-border);
       border-radius: var(--radius-xl);
@@ -675,6 +689,7 @@
     .program-lead {
       color: var(--color-text-muted);
       max-width: 62ch;
+      overflow-wrap: break-word;
     }
     .program-meta {
       display: flex;
@@ -692,6 +707,10 @@
       border: 1px solid var(--color-border);
       color: var(--color-text-muted);
       font-size: var(--text-sm);
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .program-chip svg {
       width: 0.95rem;
@@ -1597,9 +1616,9 @@
 
         <nav id="mobile-panel" class="mobile-panel" aria-label="Navegação móvel">
           <a href="#inicio">Início</a>
-          
-          
-          
+          <a href="#programacao">Programação</a>
+          <a href="#galeria">Galeria</a>
+          <a href="#palestrantes">Palestrantes</a>
         </nav>
       </div>
     </header>
