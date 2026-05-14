@@ -210,7 +210,8 @@
     }
 
     /* ── Scroll-to-top button ── */
-    .scroll-top-btn {
+    
+    .scroll-top {
       position: fixed;
       bottom: var(--space-6);
       right: var(--space-5);
@@ -218,23 +219,30 @@
       width: 48px;
       height: 48px;
       border-radius: var(--radius-full);
-      background: linear-gradient(135deg, rgba(197,173,50,0.22), rgba(62,168,125,0.18));
-      border: 1px solid rgba(197,173,50,0.36);
-      color: var(--color-text);
+      background: var(--color-brand);
+      border: none;
+      color: var(--color-bg);
       display: grid;
       place-items: center;
-      backdrop-filter: blur(12px);
       box-shadow: var(--shadow-md);
       opacity: 0;
       pointer-events: none;
       transform: translateY(12px);
-      transition: opacity 0.3s cubic-bezier(0.16,1,0.3,1), transform 0.3s cubic-bezier(0.16,1,0.3,1);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
     }
-    .scroll-top-btn.visible {
+    
+    .scroll-top:hover {
+      background: var(--color-brand-light);
+      transform: translateY(-2px);
+    }
+    
+    .scroll-top.show {
       opacity: 1;
       pointer-events: auto;
       transform: translateY(0);
     }
+
     .scroll-top-btn:hover {
       background: linear-gradient(135deg, rgba(197,173,50,0.38), rgba(62,168,125,0.3));
     }
@@ -1554,7 +1562,12 @@
       .scroll-top-btn { bottom: var(--space-4); right: var(--space-4); width: 42px; height: 42px; }
     }
 
-  </style>
+  
+    /* --- Correção de Alinhamento (Apoios) --- */
+    .program-item[data-type="apoio"] {
+      align-items: center;
+    }
+</style>
 </head>
 <body>
   <div class="site-shell">
@@ -1639,7 +1652,7 @@
             
                     <span class="eyebrow">Encontro técnico · Maio 2026 · Grupo Locks</span>
             <h1 class="hero-title">Troca real de <span class="accent">experiências</span> no agro.</h1>
-            <p class="hero-copy">Encontro técnico anual do Grupo Locks — três dias de imersão no campo, palestras técnicas e integração entre os times. 19 a 21 de maio de 2026 · Hotel Deville, Cuiabá-MT.</p>
+            <p class="hero-copy">Encontro técnico anual do Grupo Locks — três dias de imersão no campo, palestras técnicas e integração entre os times. 19 a 21 de maio de 2026 · Unidade Dourado, Nortelândia-MT e Hotel Deville, Cuiabá-MT.</p>
             <div class="hero-actions">
               <a class="button-primary" href="#programacao">Ver programação</a>
               <a class="button-secondary" href="#palestrantes">Palestrantes</a>
@@ -1747,7 +1760,7 @@
                       </div>
                       <h3>Café da manhã e boas-vindas</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Roberio Lopes / Gerson Trenhago</span><span><i data-lucide="clock-3"></i> 30 min</span><span><i data-lucide="map-pin"></i> Hotel / Sede</span><span><i data-lucide="tag"></i> Abertura</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Roberio Lopes / Gerson Trenhago</span><span><i data-lucide="clock-3"></i> 30 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="apoio">
@@ -1761,7 +1774,7 @@
                       </div>
                       <h3>Deslocamento para estação de campo — Algodão</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Roberio Lopes</span><span><i data-lucide="clock-3"></i> 15 min</span><span><i data-lucide="tag"></i> Logística</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Roberio Lopes</span><span><i data-lucide="clock-3"></i> 15 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="externo">
@@ -1775,7 +1788,7 @@
                       </div>
                       <h3>Estação de campo — Algodão</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Eneias Woidyla / Marquel Holzchuh / Ciro Rosolem</span><span><i data-lucide="clock-3"></i> 1h20</span><span><i data-lucide="tag"></i> Campo</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Eneias Woidyla / Marquel Holzchuh / Ciro Rosolem</span><span><i data-lucide="clock-3"></i> 1h20</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="apoio">
@@ -1789,7 +1802,7 @@
                       </div>
                       <h3>Deslocamento para estação de campo — Milho</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Roberio Lopes</span><span><i data-lucide="clock-3"></i> 15 min</span><span><i data-lucide="tag"></i> Logística</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Roberio Lopes</span><span><i data-lucide="clock-3"></i> 15 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="interno">
@@ -1803,7 +1816,7 @@
                       </div>
                       <h3>Estação de campo — Milho</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Vitória Carvalho / Victorino Menegat</span><span><i data-lucide="clock-3"></i> 35 min</span><span><i data-lucide="tag"></i> Campo</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Vitória Carvalho / Victorino Menegat</span><span><i data-lucide="clock-3"></i> 35 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="interno">
@@ -1817,7 +1830,7 @@
                       </div>
                       <h3>Tour Pesquisa</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Roberio Lopes / Eneias Woidyla</span><span><i data-lucide="clock-3"></i> 20 min</span><span><i data-lucide="tag"></i> Pesquisa</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Roberio Lopes / Eneias Woidyla</span><span><i data-lucide="clock-3"></i> 20 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="interno">
@@ -1831,7 +1844,7 @@
                       </div>
                       <h3>Tour Talhão 16 — Sorgo e Zuri</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Roberio Lopes / Eneias Woidyla</span><span><i data-lucide="clock-3"></i> 25 min</span><span><i data-lucide="tag"></i> Campo</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Roberio Lopes / Eneias Woidyla</span><span><i data-lucide="clock-3"></i> 25 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="apoio">
@@ -1845,7 +1858,7 @@
                       </div>
                       <h3>Almoço</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Roberio Lopes</span><span><i data-lucide="clock-3"></i> 1h20</span><span><i data-lucide="tag"></i> Refeição</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="clock-3"></i> 1h20</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="interno">
@@ -1859,7 +1872,7 @@
                       </div>
                       <h3>Estação de campo — Silvipastoril (ILPF) e Retiro Colorado</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Fernando Sagrado / Christian Ferro</span><span><i data-lucide="clock-3"></i> 1h30</span><span><i data-lucide="tag"></i> Campo</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Fernando Sagrado / Christian Ferro</span><span><i data-lucide="clock-3"></i> 1h30</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="interno">
@@ -1873,7 +1886,7 @@
                       </div>
                       <h3>Tour pela sede, UBG, UBA e confinamento</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Roberio Lopes</span><span><i data-lucide="clock-3"></i> 1h30</span><span><i data-lucide="tag"></i> Tour</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Roberio Lopes</span><span><i data-lucide="clock-3"></i> 1h30</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="apoio">
@@ -1887,7 +1900,7 @@
                       </div>
                       <h3>Deslocamento para Hotel Deville — Cuiabá</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Castelar Baierle</span><span><i data-lucide="clock-3"></i> 1h30</span><span><i data-lucide="tag"></i> Logística</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Castelar Baierle</span><span><i data-lucide="clock-3"></i> 1h30</span></div>
                     </div>
                   </article></div>
               </section>
@@ -1912,7 +1925,7 @@
                       </div>
                       <h3>Abertura</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Samuel Locks, Gerson Trenhago</span><span><i data-lucide="clock-3"></i> 15 min</span><span><i data-lucide="tag"></i> Abertura</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Samuel Locks, Gerson Trenhago</span><span><i data-lucide="clock-3"></i> 15 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="externo">
@@ -1926,7 +1939,7 @@
                       </div>
                       <h3>Fisiologia do algodoeiro</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Ciro Rosolem</span><span><i data-lucide="clock-3"></i> 1h20</span><span><i data-lucide="tag"></i> Algodão</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Ciro Rosolem</span><span><i data-lucide="clock-3"></i> 1h20</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="apoio">
@@ -1935,12 +1948,13 @@
                       <span class="track-pill">Q&A</span>
                     </div>
                     <div class="program-content">
+                      
                       <div class="program-topline">
-                        <span class="speaker-badge break">Apoio</span>
+                        <span class="speaker-badge external">Apresentador externo</span>
                       </div>
                       <h3>Espaço para perguntas</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 25 min</span><span><i data-lucide="tag"></i> Q&A</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 25 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="apoio">
@@ -1949,12 +1963,10 @@
                       <span class="track-pill">Pausa</span>
                     </div>
                     <div class="program-content">
-                      <div class="program-topline">
-                        <span class="speaker-badge break">Apoio</span>
-                      </div>
+                      
                       <h3>Intervalo</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 15 min</span><span><i data-lucide="tag"></i> Pausa</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="clock-3"></i> 15 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="interno">
@@ -1968,7 +1980,7 @@
                       </div>
                       <h3>Uso de dados na tomada de decisão agrícola</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Matheus Cordeiro / Victorino Menegat</span><span><i data-lucide="clock-3"></i> 1h20</span><span><i data-lucide="tag"></i> Tecnologia</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Matheus Cordeiro / Victorino Menegat</span><span><i data-lucide="clock-3"></i> 1h20</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="apoio">
@@ -1977,12 +1989,13 @@
                       <span class="track-pill">Q&A</span>
                     </div>
                     <div class="program-content">
+                      
                       <div class="program-topline">
-                        <span class="speaker-badge break">Apoio</span>
+                        <span class="speaker-badge external">Apresentador externo</span>
                       </div>
                       <h3>Espaço para perguntas</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 35 min</span><span><i data-lucide="tag"></i> Q&A</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 35 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="apoio">
@@ -1991,12 +2004,10 @@
                       <span class="track-pill">Refeição</span>
                     </div>
                     <div class="program-content">
-                      <div class="program-topline">
-                        <span class="speaker-badge break">Apoio</span>
-                      </div>
+                      
                       <h3>Almoço no hotel</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 1h20</span><span><i data-lucide="tag"></i> Refeição</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="clock-3"></i> 1h20</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="externo">
@@ -2010,7 +2021,7 @@
                       </div>
                       <h3>Manejo de soja para altas produtividades no cerrado brasileiro</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Sergio Abud</span><span><i data-lucide="clock-3"></i> 1h30</span><span><i data-lucide="tag"></i> Soja</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Sergio Abud</span><span><i data-lucide="clock-3"></i> 1h30</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="apoio">
@@ -2019,12 +2030,13 @@
                       <span class="track-pill">Q&A</span>
                     </div>
                     <div class="program-content">
+                      
                       <div class="program-topline">
-                        <span class="speaker-badge break">Apoio</span>
+                        <span class="speaker-badge external">Apresentador externo</span>
                       </div>
                       <h3>Espaço para perguntas</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 30 min</span><span><i data-lucide="tag"></i> Q&A</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 30 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="apoio">
@@ -2033,12 +2045,10 @@
                       <span class="track-pill">Pausa</span>
                     </div>
                     <div class="program-content">
-                      <div class="program-topline">
-                        <span class="speaker-badge break">Apoio</span>
-                      </div>
+                      
                       <h3>Intervalo</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 15 min</span><span><i data-lucide="tag"></i> Pausa</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="clock-3"></i> 15 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="interno">
@@ -2048,11 +2058,11 @@
                     </div>
                     <div class="program-content">
                       <div class="program-topline">
-                        <span class="speaker-badge internal">Palestrante interno</span>
+                        <span class="speaker-badge external">Apresentador externo</span>
                       </div>
                       <h3>Premiações</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 30 min</span><span><i data-lucide="tag"></i> Premiação</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 30 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="externo">
@@ -2066,7 +2076,7 @@
                       </div>
                       <h3>Tecnologia de aplicação terrestre e aérea</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Paulo Rosa</span><span><i data-lucide="clock-3"></i> 1h50</span><span><i data-lucide="tag"></i> Tecnologia</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Paulo Rosa</span><span><i data-lucide="clock-3"></i> 1h50</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="apoio">
@@ -2075,12 +2085,13 @@
                       <span class="track-pill">Q&A</span>
                     </div>
                     <div class="program-content">
+                      
                       <div class="program-topline">
-                        <span class="speaker-badge break">Apoio</span>
+                        <span class="speaker-badge external">Apresentador externo</span>
                       </div>
                       <h3>Espaço para perguntas</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 10 min</span><span><i data-lucide="tag"></i> Q&A</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 10 min</span></div>
                     </div>
                   </article></div>
               </section>
@@ -2101,11 +2112,11 @@
                     </div>
                     <div class="program-content">
                       <div class="program-topline">
-                        <span class="speaker-badge internal">Palestrante interno</span>
+                        <span class="speaker-badge external">Apresentador externo</span>
                       </div>
                       <h3>Abertura e comentários do dia anterior</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 15 min</span><span><i data-lucide="tag"></i> Abertura</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 15 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="externo">
@@ -2119,7 +2130,7 @@
                       </div>
                       <h3>Sistema de aplicação de inoculante no sulco de semeadura</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Ricardo / Alexandre Santiago</span><span><i data-lucide="clock-3"></i> 1h20</span><span><i data-lucide="tag"></i> Inoculante</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Ricardo Rodrigues da Cunha</span><span><i data-lucide="clock-3"></i> 1h20</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="apoio">
@@ -2128,12 +2139,13 @@
                       <span class="track-pill">Q&A</span>
                     </div>
                     <div class="program-content">
+                      
                       <div class="program-topline">
-                        <span class="speaker-badge break">Apoio</span>
+                        <span class="speaker-badge external">Apresentador externo</span>
                       </div>
                       <h3>Espaço para perguntas</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 25 min</span><span><i data-lucide="tag"></i> Q&A</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 25 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="apoio">
@@ -2142,12 +2154,10 @@
                       <span class="track-pill">Pausa</span>
                     </div>
                     <div class="program-content">
-                      <div class="program-topline">
-                        <span class="speaker-badge break">Apoio</span>
-                      </div>
+                      
                       <h3>Intervalo</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 15 min</span><span><i data-lucide="tag"></i> Pausa</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="clock-3"></i> 15 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="interno">
@@ -2161,7 +2171,7 @@
                       </div>
                       <h3>Manual de manutenção — políticas e procedimentos</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Samuel Norato</span><span><i data-lucide="clock-3"></i> 45 min</span><span><i data-lucide="tag"></i> Manutenção</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Samuel Norato</span><span><i data-lucide="clock-3"></i> 45 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="apoio">
@@ -2170,12 +2180,13 @@
                       <span class="track-pill">Q&A</span>
                     </div>
                     <div class="program-content">
+                      
                       <div class="program-topline">
-                        <span class="speaker-badge break">Apoio</span>
+                        <span class="speaker-badge external">Apresentador externo</span>
                       </div>
                       <h3>Espaço para perguntas</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 10 min</span><span><i data-lucide="tag"></i> Q&A</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 10 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="interno">
@@ -2189,7 +2200,7 @@
                       </div>
                       <h3>Aviação agrícola</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Castelar Baierle</span><span><i data-lucide="clock-3"></i> 40 min</span><span><i data-lucide="tag"></i> Aviação</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Castelar Baierle</span><span><i data-lucide="clock-3"></i> 40 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="apoio">
@@ -2198,12 +2209,13 @@
                       <span class="track-pill">Q&A</span>
                     </div>
                     <div class="program-content">
+                      
                       <div class="program-topline">
-                        <span class="speaker-badge break">Apoio</span>
+                        <span class="speaker-badge external">Apresentador externo</span>
                       </div>
                       <h3>Espaço para perguntas</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 10 min</span><span><i data-lucide="tag"></i> Q&A</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 10 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="apoio">
@@ -2212,12 +2224,10 @@
                       <span class="track-pill">Refeição</span>
                     </div>
                     <div class="program-content">
-                      <div class="program-topline">
-                        <span class="speaker-badge break">Apoio</span>
-                      </div>
+                      
                       <h3>Almoço</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 1h30</span><span><i data-lucide="tag"></i> Refeição</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="clock-3"></i> 1h30</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="externo">
@@ -2231,7 +2241,7 @@
                       </div>
                       <h3>Manutenção da qualidade na colheita mecanizada de algodão</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> João Paulo Freitas</span><span><i data-lucide="clock-3"></i> 50 min</span><span><i data-lucide="tag"></i> Algodão</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> João Paulo Freitas</span><span><i data-lucide="clock-3"></i> 50 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="apoio">
@@ -2240,12 +2250,13 @@
                       <span class="track-pill">Q&A</span>
                     </div>
                     <div class="program-content">
+                      
                       <div class="program-topline">
-                        <span class="speaker-badge break">Apoio</span>
+                        <span class="speaker-badge external">Apresentador externo</span>
                       </div>
                       <h3>Espaço para perguntas</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 10 min</span><span><i data-lucide="tag"></i> Q&A</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 10 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="interno">
@@ -2259,7 +2270,7 @@
                       </div>
                       <h3>Sistema de projetos de linha e sentido de plantio</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Vinicius Liberali</span><span><i data-lucide="clock-3"></i> 50 min</span><span><i data-lucide="tag"></i> Plantio</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Vinicius Liberali</span><span><i data-lucide="clock-3"></i> 50 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="apoio">
@@ -2268,12 +2279,13 @@
                       <span class="track-pill">Q&A</span>
                     </div>
                     <div class="program-content">
+                      
                       <div class="program-topline">
-                        <span class="speaker-badge break">Apoio</span>
+                        <span class="speaker-badge external">Apresentador externo</span>
                       </div>
                       <h3>Espaço para perguntas</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 10 min</span><span><i data-lucide="tag"></i> Q&A</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 10 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="apoio">
@@ -2282,12 +2294,10 @@
                       <span class="track-pill">Pausa</span>
                     </div>
                     <div class="program-content">
-                      <div class="program-topline">
-                        <span class="speaker-badge break">Apoio</span>
-                      </div>
+                      
                       <h3>Intervalo</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 15 min</span><span><i data-lucide="tag"></i> Pausa</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="clock-3"></i> 15 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="interno">
@@ -2301,7 +2311,7 @@
                       </div>
                       <h3>Dados e indicadores da pecuária</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Fernando Sagrado</span><span><i data-lucide="clock-3"></i> 50 min</span><span><i data-lucide="tag"></i> Pecuária</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Fernando Sagrado</span><span><i data-lucide="clock-3"></i> 50 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="apoio">
@@ -2310,12 +2320,13 @@
                       <span class="track-pill">Q&A</span>
                     </div>
                     <div class="program-content">
+                      
                       <div class="program-topline">
-                        <span class="speaker-badge break">Apoio</span>
+                        <span class="speaker-badge external">Apresentador externo</span>
                       </div>
                       <h3>Espaço para perguntas</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 20 min</span><span><i data-lucide="tag"></i> Q&A</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Luiz Patroni</span><span><i data-lucide="clock-3"></i> 20 min</span></div>
                     </div>
                   </article>
                   <article class="program-item" data-type="interno">
@@ -2329,7 +2340,7 @@
                       </div>
                       <h3>Encerramento</h3>
                       
-                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Gerson Trenhago</span><span><i data-lucide="clock-3"></i> 35 min</span><span><i data-lucide="tag"></i> Fechamento</span></div>
+                      <div class="program-meta-row"><span><i data-lucide="user-round"></i> Gerson Trenhago</span><span><i data-lucide="clock-3"></i> 35 min</span></div>
                     </div>
                   </article></div>
               </section>
@@ -2392,11 +2403,7 @@
                 <div class="slide-caption">                  <p>Recordações de edições anteriores</p>
                 </div>
               </div>
-              <div class="carousel-slide" data-index="7">
-                <img src="https://lh3.googleusercontent.com/d/19rz07GQNZX-UzODMnREK6M5z-bL3QGRl" alt="Foto 8 — ENCOTEC 2026" loading="lazy">
-                <div class="slide-caption">                  <p>Recordações de edições anteriores</p>
-                </div>
-              </div>
+              
               <div class="carousel-slide" data-index="8">
                 <img src="https://lh3.googleusercontent.com/d/1Bh7X57GGvT68ZFPkuO-_ls3rfJ58c_i_" alt="Foto 9 — ENCOTEC 2026" loading="lazy">
                 <div class="slide-caption">                  <p>Recordações de edições anteriores</p>
@@ -2512,11 +2519,7 @@
                 <div class="slide-caption">                  <p>Recordações de edições anteriores</p>
                 </div>
               </div>
-              <div class="carousel-slide" data-index="31">
-                <img src="https://lh3.googleusercontent.com/d/1hVoww8sR7_YaMQe5eS9TpGvGaEVqqUpv" alt="Foto 32 — ENCOTEC 2026" loading="lazy">
-                <div class="slide-caption">                  <p>Recordações de edições anteriores</p>
-                </div>
-              </div>
+              
               <div class="carousel-slide" data-index="32">
                 <img src="https://lh3.googleusercontent.com/d/1j2WigVDiadzduAKN9O7qTFXoRw2o7lMt" alt="Foto 33 — ENCOTEC 2026" loading="lazy">
                 <div class="slide-caption">                  <p>Recordações de edições anteriores</p>
@@ -2598,6 +2601,70 @@
                 </div>
               </div>
 
+
+              
+              <div class="carousel-slide" data-index="45">
+                <img src="https://drive.google.com/thumbnail?id=1BfXTrWNaetQBOv4LidualCi-Q_9dnhDk&sz=w1000" alt="Nova Foto 45 — ENCOTEC 2026" loading="lazy">
+                <div class="slide-caption">
+                  <p>Adicionada recentemente</p>
+                </div>
+              </div>
+              <div class="carousel-slide" data-index="46">
+                <img src="https://drive.google.com/thumbnail?id=1UT-Xzj5O6epTv9-2OOH8bYCwoXwg7I97&sz=w1000" alt="Nova Foto 46 — ENCOTEC 2026" loading="lazy">
+                <div class="slide-caption">
+                  <p>Adicionada recentemente</p>
+                </div>
+              </div>
+              <div class="carousel-slide" data-index="47">
+                <img src="https://drive.google.com/thumbnail?id=1XRUVYY6rYo2sr3LzlR_vFHL593JXzAuW&sz=w1000" alt="Nova Foto 47 — ENCOTEC 2026" loading="lazy">
+                <div class="slide-caption">
+                  <p>Adicionada recentemente</p>
+                </div>
+              </div>
+              <div class="carousel-slide" data-index="48">
+                <img src="https://drive.google.com/thumbnail?id=1p4Zsw7q0zuhir4XNF880K9brCgq6E19Y&sz=w1000" alt="Nova Foto 48 — ENCOTEC 2026" loading="lazy">
+                <div class="slide-caption">
+                  <p>Adicionada recentemente</p>
+                </div>
+              </div>
+              <div class="carousel-slide" data-index="49">
+                <img src="https://drive.google.com/thumbnail?id=1vxenPlGW_7Du4kkUF3CJpIbbtY62xmPN&sz=w1000" alt="Nova Foto 49 — ENCOTEC 2026" loading="lazy">
+                <div class="slide-caption">
+                  <p>Adicionada recentemente</p>
+                </div>
+              </div>
+
+              
+              <div class="carousel-slide" data-index="50">
+                <img src="https://drive.google.com/thumbnail?id=1MELVU7kllBXXDEjFjXerfAEjEI2FrTe-&sz=w1000" alt="Nova Foto 50 — ENCOTEC 2026" loading="lazy">
+                <div class="slide-caption">
+                  <p>Adicionada recentemente</p>
+                </div>
+              </div>
+              <div class="carousel-slide" data-index="51">
+                <img src="https://drive.google.com/thumbnail?id=1SvAeL_LFL677YNakabLaK-tRM1cxeFYM&sz=w1000" alt="Nova Foto 51 — ENCOTEC 2026" loading="lazy">
+                <div class="slide-caption">
+                  <p>Adicionada recentemente</p>
+                </div>
+              </div>
+              <div class="carousel-slide" data-index="52">
+                <img src="https://drive.google.com/thumbnail?id=1ZZAZGljuppzhC9iMPqKAQU7OPhJxeG_w&sz=w1000" alt="Nova Foto 52 — ENCOTEC 2026" loading="lazy">
+                <div class="slide-caption">
+                  <p>Adicionada recentemente</p>
+                </div>
+              </div>
+              <div class="carousel-slide" data-index="53">
+                <img src="https://drive.google.com/thumbnail?id=1eHalIKVK0SV4ZFq0Dy8Eg_NRHSggKsu6&sz=w1000" alt="Nova Foto 53 — ENCOTEC 2026" loading="lazy">
+                <div class="slide-caption">
+                  <p>Adicionada recentemente</p>
+                </div>
+              </div>
+              <div class="carousel-slide" data-index="54">
+                <img src="https://drive.google.com/thumbnail?id=1pff5BTYE_i8x6LVRSTe30FXRg6IXw9YM&sz=w1000" alt="Nova Foto 54 — ENCOTEC 2026" loading="lazy">
+                <div class="slide-caption">
+                  <p>Adicionada recentemente</p>
+                </div>
+              </div>
 
               <button class="carousel-arrow prev" id="carouselPrev" aria-label="Foto anterior">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
@@ -2779,6 +2846,38 @@
               
               
               
+            
+              <button class="carousel-thumb" data-go="45" aria-label="Foto 46 — ENCOTEC 2026">
+                <img src="https://drive.google.com/thumbnail?id=1BfXTrWNaetQBOv4LidualCi-Q_9dnhDk&sz=w1000" alt="" loading="lazy">
+              </button>
+              <button class="carousel-thumb" data-go="46" aria-label="Foto 47 — ENCOTEC 2026">
+                <img src="https://drive.google.com/thumbnail?id=1UT-Xzj5O6epTv9-2OOH8bYCwoXwg7I97&sz=w1000" alt="" loading="lazy">
+              </button>
+              <button class="carousel-thumb" data-go="47" aria-label="Foto 48 — ENCOTEC 2026">
+                <img src="https://drive.google.com/thumbnail?id=1XRUVYY6rYo2sr3LzlR_vFHL593JXzAuW&sz=w1000" alt="" loading="lazy">
+              </button>
+              <button class="carousel-thumb" data-go="48" aria-label="Foto 49 — ENCOTEC 2026">
+                <img src="https://drive.google.com/thumbnail?id=1p4Zsw7q0zuhir4XNF880K9brCgq6E19Y&sz=w1000" alt="" loading="lazy">
+              </button>
+              <button class="carousel-thumb" data-go="49" aria-label="Foto 50 — ENCOTEC 2026">
+                <img src="https://drive.google.com/thumbnail?id=1vxenPlGW_7Du4kkUF3CJpIbbtY62xmPN&sz=w1000" alt="" loading="lazy">
+              </button>
+            
+              <button class="carousel-thumb" data-go="50" aria-label="Foto 51 — ENCOTEC 2026">
+                <img src="https://drive.google.com/thumbnail?id=1MELVU7kllBXXDEjFjXerfAEjEI2FrTe-&sz=w1000" alt="" loading="lazy">
+              </button>
+              <button class="carousel-thumb" data-go="51" aria-label="Foto 52 — ENCOTEC 2026">
+                <img src="https://drive.google.com/thumbnail?id=1SvAeL_LFL677YNakabLaK-tRM1cxeFYM&sz=w1000" alt="" loading="lazy">
+              </button>
+              <button class="carousel-thumb" data-go="52" aria-label="Foto 53 — ENCOTEC 2026">
+                <img src="https://drive.google.com/thumbnail?id=1ZZAZGljuppzhC9iMPqKAQU7OPhJxeG_w&sz=w1000" alt="" loading="lazy">
+              </button>
+              <button class="carousel-thumb" data-go="53" aria-label="Foto 54 — ENCOTEC 2026">
+                <img src="https://drive.google.com/thumbnail?id=1eHalIKVK0SV4ZFq0Dy8Eg_NRHSggKsu6&sz=w1000" alt="" loading="lazy">
+              </button>
+              <button class="carousel-thumb" data-go="54" aria-label="Foto 55 — ENCOTEC 2026">
+                <img src="https://drive.google.com/thumbnail?id=1pff5BTYE_i8x6LVRSTe30FXRg6IXw9YM&sz=w1000" alt="" loading="lazy">
+              </button>
             </div>
           </div>
 
@@ -2803,8 +2902,9 @@
       <section class="section speakers-section" id="palestrantes">
         <div class="container speakers-shell">
           <div class="section-header fade-in">
-            <h2 class="section-title">Palestrantes do ENCOTEC 2026</h2>
-            <p class="section-description">O encontro reúne especialistas do time interno do Grupo Locks e convidados externos com expertise em fisiologia vegetal, manejo de culturas, tecnologia de aplicação, inoculantes e qualidade na colheita mecanizada.</p>
+            <span class="eyebrow">Quem vai apresentar</span>
+            <h2 class="section-title">Palestrantes &<br>facilitadores</h2>
+            <p class="section-description">Time interno do Grupo Locks e especialistas convidados que conduzirão as palestras técnicas e sessões de campo.</p>
           </div>
 
           <div class="fade-in">
@@ -2832,7 +2932,7 @@
                 <div class="speaker-avatar external">SA</div>
                 <div>
                   <h3>Sergio Abud</h3>
-                  <p class="speaker-role">Especialista em Soja</p>
+                  <p class="speaker-role">Vice-presidente do Comite Estratégico Soja Brasil (CESB)</p>
                 </div>
               </div>
               <div class="speaker-topic">Manejo de soja para altas produtividades no cerrado brasileiro</div>
@@ -2860,8 +2960,8 @@
               <div class="speaker-card-top">
                 <div class="speaker-avatar external">AS</div>
                 <div>
-                  <h3>Alexandre Santiago</h3>
-                  <p class="speaker-role">Especialista em Inoculantes</p>
+                  <h3>Ricardo Rodrigues da Cunha</h3>
+                  <p class="speaker-role">Diretor presidente do Grupo ORION</p>
                 </div>
               </div>
               <div class="speaker-topic">Sistema de aplicação de inoculante no sulco de semeadura</div>
@@ -2875,7 +2975,7 @@
                 <div class="speaker-avatar external">JP</div>
                 <div>
                   <h3>João Paulo Freitas</h3>
-                  <p class="speaker-role">Especialista em Colheita</p>
+                  <p class="speaker-role">Especialista de produtos e suporte ao cliente John Deere</p>
                 </div>
               </div>
               <div class="speaker-topic">Manutenção da qualidade na colheita mecanizada de algodão</div>
@@ -3217,12 +3317,24 @@
       // ── Scroll progress bar ────────────────────────────────────────────────
       (function() {
         const bar = document.getElementById('scrollProgress');
-        const btn = document.getElementById('scrollTopBtn');
+        const btn = document.getElementById('scrollTop');
         window.addEventListener('scroll', () => {
           const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
           if (bar) bar.style.width = pct + '%';
-          if (btn) btn.classList.toggle('visible', window.scrollY > 400);
+          if (btn) {
+            if (window.scrollY > 400) {
+              btn.classList.add('show');
+            } else {
+              btn.classList.remove('show');
+            }
+          }
         }, { passive: true });
+        
+        if (btn) {
+          btn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
+        }
       })();
 
       // ── Scroll fade-in observer ────────────────────────────────────────────
@@ -3322,9 +3434,9 @@
       })();
 </script>
 
-  <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Voltar ao topo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
-  </button>
+  <button class="scroll-top" id="scrollTop" aria-label="Voltar ao topo" type="button">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="m18 15-6-6-6 6"></path></svg>
+</button>
 
 </body>
 </html>
