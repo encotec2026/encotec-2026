@@ -1608,7 +1608,8 @@
     .video-embed {
       position: relative;
       width: 100%;
-      aspect-ratio: 16 / 9;
+      /* 56.25% = proporção 16:9 + 48px extra para a barra de controles do Drive no topo */
+      padding-top: calc(56.25% + 48px);
       background: #000;
       overflow: hidden;
       border-radius: var(--radius-lg) var(--radius-lg) 0 0;
