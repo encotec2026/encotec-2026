@@ -1567,6 +1567,107 @@
     .program-item[data-type="apoio"] {
       align-items: center;
     }
+
+    /* ── Tema do Evento ── */
+    .theme-section {
+      padding-block: clamp(var(--space-16), 8vw, var(--space-24));
+      position: relative;
+      overflow: hidden;
+    }
+    .theme-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(197,173,50,0.05) 50%, transparent 100%);
+      pointer-events: none;
+    }
+    .theme-inner {
+      max-width: 820px;
+      margin-inline: auto;
+      display: grid;
+      gap: var(--space-10);
+      text-align: center;
+    }
+    .theme-kicker {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-4);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: var(--color-gold);
+      font-weight: 700;
+    }
+    .theme-kicker::before,
+    .theme-kicker::after {
+      content: "";
+      height: 1px;
+      width: 48px;
+      background: linear-gradient(90deg, transparent, rgba(197,173,50,0.6));
+    }
+    .theme-kicker::after {
+      background: linear-gradient(90deg, rgba(197,173,50,0.6), transparent);
+    }
+    .theme-slogan {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3.2vw, 2.9rem);
+      line-height: 1.12;
+      letter-spacing: 0.025em;
+      text-transform: uppercase;
+      text-wrap: balance;
+    }
+    .theme-slogan .theme-accent {
+      color: var(--color-gold);
+    }
+    .theme-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(197,173,50,0.35), transparent);
+      margin-block: calc(var(--space-2) * -1);
+    }
+    .theme-body {
+      display: grid;
+      gap: var(--space-6);
+      text-align: left;
+    }
+    .theme-definition {
+      position: relative;
+      padding: var(--space-6) var(--space-8);
+      border-left: 2px solid var(--color-gold);
+      background: linear-gradient(135deg, rgba(197,173,50,0.07), rgba(197,173,50,0.02));
+      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+      box-shadow: inset 0 0 0 1px rgba(197,173,50,0.08);
+    }
+    .theme-definition-label {
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--color-gold);
+      font-weight: 700;
+      margin-bottom: var(--space-3);
+      display: block;
+    }
+    .theme-definition p {
+      color: var(--color-text-muted);
+      font-size: var(--text-base);
+      line-height: 1.8;
+    }
+    .theme-definition strong {
+      color: var(--color-text);
+      font-weight: 700;
+    }
+    .theme-event-desc {
+      color: var(--color-text-muted);
+      font-size: var(--text-base);
+      line-height: 1.85;
+      text-align: center;
+      max-width: 68ch;
+      margin-inline: auto;
+    }
+    @media (max-width: 768px) {
+      .theme-definition { padding: var(--space-5); }
+    }
 </style>
 </head>
 <body>
@@ -1676,6 +1777,31 @@
       </section>
 
 
+
+      <section class="theme-section">
+        <div class="container">
+          <div class="theme-inner fade-in">
+
+            <span class="theme-kicker">Tema da 3ª edição</span>
+
+            <h2 class="theme-slogan">
+              Do solo à colheita: <span class="theme-accent">capricho e disciplina</span> para o melhor custo-benefício por hectare
+            </h2>
+
+            <div class="theme-divider"></div>
+
+            <div class="theme-body">
+              <div class="theme-definition">
+                <span class="theme-definition-label">O que significa</span>
+                <p>A sinergia entre capricho e disciplina é a união entre a <strong>qualidade minuciosa da execução</strong> (capricho) e a <strong>constância inabalável dos processos</strong> (disciplina). Enquanto a disciplina garante que o trabalho seja feito todos os dias, independentemente da motivação, o capricho assegura que esse trabalho tenha excelência, atenção aos detalhes e propósito — elevando o resultado de apenas <em>"feito"</em> para <em>"bem-feito"</em>.</p>
+              </div>
+
+              <p class="theme-event-desc">A 3ª edição do ENCOTEC vem mostrar práticas em estações de campo e palestras com temas desde manejo de solos e fisiologia vegetal, tecnologias de sistemas de produção, gestão e inteligência de dados para se alcançar produtividade de excelência.</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
 
       <section class="section program-section" id="programacao">
         <div class="container program-shell">
@@ -2983,6 +3109,35 @@
                 <span class="speaker-meta-pill external">Convidado externo</span>
                 <span class="speaker-day-pill"><span class="shirt-dot azul"></span> Dia 3 · 21/05</span>
               </div>
+            </article>
+            <article class="speaker-card fade-in">
+              <div class="speaker-card-top">
+                <div class="speaker-avatar external">MH</div>
+                <div>
+                  <h3>Marquel Holzchuh</h3>
+                  <p class="speaker-role">Pesquisador</p>
+                </div>
+              </div>
+              <div class="speaker-topic">Estação de campo — Algodão</div>
+              <div class="speaker-meta-pills">
+                <span class="speaker-meta-pill external">Convidado externo</span>
+                <span class="speaker-day-pill"><span class="shirt-dot cinza"></span> Dia 1 · 19/05</span>
+              </div>
+            </article>
+            <article class="speaker-card fade-in">
+              <div class="speaker-card-top">
+                <div class="speaker-avatar external">LP</div>
+                <div>
+                  <h3>Luiz Patroni</h3>
+                  <p class="speaker-role">Moderação Técnica</p>
+                </div>
+              </div>
+              <div class="speaker-topic">Moderação de todos os espaços para perguntas e sessões</div>
+              <div class="speaker-meta-pills">
+                <span class="speaker-meta-pill external">Convidado externo</span>
+                <span class="speaker-day-pill"><span class="shirt-dot verde"></span> Dia 2 · 20/05</span>
+                <span class="speaker-day-pill"><span class="shirt-dot azul"></span> Dia 3 · 21/05</span>
+              </div>
             </article></div>
           </div>
 
@@ -2996,7 +3151,7 @@
                 <div class="speaker-avatar internal">CF</div>
                 <div>
                   <h3>Christian Ferro</h3>
-                  <p class="speaker-role">Pecuária - Grupo Locks</p>
+                  <p class="speaker-role">Analista técnico pleno</p>
                 </div>
               </div>
               <div class="speaker-topic">Estação de campo — Silvipastoril (ILPF) e Retiro Colorado</div>
@@ -3040,7 +3195,7 @@
                 <div class="speaker-avatar internal">RL</div>
                 <div>
                   <h3>Roberio Lopes</h3>
-                  <p class="speaker-role">Coordenação de Campo</p>
+                  <p class="speaker-role">Gerente da fazenda Dourado</p>
                 </div>
               </div>
               <div class="speaker-topic">Condução das estações de campo e tours técnicos</div>
@@ -3054,7 +3209,7 @@
                 <div class="speaker-avatar internal">EW</div>
                 <div>
                   <h3>Eneias Woidyla</h3>
-                  <p class="speaker-role">Pesquisa e Campo</p>
+                  <p class="speaker-role">Coordenador de produção</p>
                 </div>
               </div>
               <div class="speaker-topic">Estação de campo Algodão, Tour Pesquisa e Talhão 16</div>
@@ -3063,26 +3218,13 @@
                 <span class="speaker-day-pill"><span class="shirt-dot cinza"></span> Dia 1 · 19/05</span>
               </div>
             </article>
-            <article class="speaker-card fade-in">
-              <div class="speaker-card-top">
-                <div class="speaker-avatar internal">MH</div>
-                <div>
-                  <h3>Marquel Holzchuh</h3>
-                  <p class="speaker-role">Produção — Algodão</p>
-                </div>
-              </div>
-              <div class="speaker-topic">Estação de campo — Algodão</div>
-              <div class="speaker-meta-pills">
-                <span class="speaker-meta-pill internal">Time interno</span>
-                <span class="speaker-day-pill"><span class="shirt-dot cinza"></span> Dia 1 · 19/05</span>
-              </div>
-            </article>
+
             <article class="speaker-card fade-in">
               <div class="speaker-card-top">
                 <div class="speaker-avatar internal">VC</div>
                 <div>
                   <h3>Vitória Carvalho</h3>
-                  <p class="speaker-role">Produção — Milho</p>
+                  <p class="speaker-role">Trainee de produção</p>
                 </div>
               </div>
               <div class="speaker-topic">Estação de campo — Milho</div>
@@ -3096,7 +3238,7 @@
                 <div class="speaker-avatar internal">VM</div>
                 <div>
                   <h3>Victorino Menegat</h3>
-                  <p class="speaker-role">Agronomia & Dados</p>
+                  <p class="speaker-role">Especialista em planejamento agrícola</p>
                 </div>
               </div>
               <div class="speaker-topic">Estação de campo Milho e Uso de dados na tomada de decisão</div>
@@ -3111,7 +3253,7 @@
                 <div class="speaker-avatar internal">FS</div>
                 <div>
                   <h3>Fernando Sagrado</h3>
-                  <p class="speaker-role">Integração Lavoura-Pecuária</p>
+                  <p class="speaker-role">Gerente de pecuária</p>
                 </div>
               </div>
               <div class="speaker-topic">ILPF e Dados e indicadores da pecuária</div>
@@ -3126,7 +3268,7 @@
                 <div class="speaker-avatar internal">CB</div>
                 <div>
                   <h3>Castelar Baierle</h3>
-                  <p class="speaker-role">Aviação Agrícola</p>
+                  <p class="speaker-role">Gerente de planejamento e controle de máquinas</p>
                 </div>
               </div>
               <div class="speaker-topic">Aviação agrícola e logística do evento</div>
@@ -3141,7 +3283,7 @@
                 <div class="speaker-avatar internal">MC</div>
                 <div>
                   <h3>Matheus Cordeiro</h3>
-                  <p class="speaker-role">Inteligência Operacional</p>
+                  <p class="speaker-role">Especialista Em Análise De Dados Agrícolas</p>
                 </div>
               </div>
               <div class="speaker-topic">Uso de dados na tomada de decisão agrícola</div>
@@ -3150,27 +3292,13 @@
                 <span class="speaker-day-pill"><span class="shirt-dot verde"></span> Dia 2 · 20/05</span>
               </div>
             </article>
-            <article class="speaker-card fade-in">
-              <div class="speaker-card-top">
-                <div class="speaker-avatar internal">LP</div>
-                <div>
-                  <h3>Luiz Patroni</h3>
-                  <p class="speaker-role">Moderação Técnica</p>
-                </div>
-              </div>
-              <div class="speaker-topic">Moderação de todos os espaços para perguntas e sessões</div>
-              <div class="speaker-meta-pills">
-                <span class="speaker-meta-pill internal">Time interno</span>
-                <span class="speaker-day-pill"><span class="shirt-dot verde"></span> Dia 2 · 20/05</span>
-                <span class="speaker-day-pill"><span class="shirt-dot azul"></span> Dia 3 · 21/05</span>
-              </div>
-            </article>
+
             <article class="speaker-card fade-in">
               <div class="speaker-card-top">
                 <div class="speaker-avatar internal">SN</div>
                 <div>
                   <h3>Samuel Norato</h3>
-                  <p class="speaker-role">Manutenção</p>
+                  <p class="speaker-role">Supervisor de planejamento e controle de máquinas</p>
                 </div>
               </div>
               <div class="speaker-topic">Manual de manutenção — políticas e procedimentos</div>
@@ -3184,7 +3312,7 @@
                 <div class="speaker-avatar internal">VL</div>
                 <div>
                   <h3>Vinicius Liberali</h3>
-                  <p class="speaker-role">Engenharia de Plantio</p>
+                  <p class="speaker-role">Coordenador Corporativo de Agricultura Digital</p>
                 </div>
               </div>
               <div class="speaker-topic">Sistema de projetos de linha e sentido de plantio</div>
