@@ -1608,33 +1608,18 @@
     .video-embed {
       position: relative;
       width: 100%;
-      /* Adiciona altura extra para acomodar o recorte do topo do player Drive */
-      padding-top: calc(56.25% + 40px);
+      aspect-ratio: 16 / 9;
       background: #000;
       overflow: hidden;
       border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     }
     .video-embed iframe {
       position: absolute;
-      /* Sobe 40px para esconder a barra de controles/logo do Drive */
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
       border: none;
       display: block;
-    }
-    /* Bloqueia a área do botão "Abrir no Drive" no topo */
-    .video-embed::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 42px;
-      background: #000;
-      z-index: 2;
-      pointer-events: all;
     }
     .video-info {
       padding: var(--space-5) var(--space-6);
