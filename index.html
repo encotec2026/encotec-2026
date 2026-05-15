@@ -1608,16 +1608,33 @@
     .video-embed {
       position: relative;
       width: 100%;
-      aspect-ratio: 16 / 9;
+      /* Adiciona altura extra para acomodar o recorte do topo do player Drive */
+      padding-top: calc(56.25% + 40px);
       background: #000;
+      overflow: hidden;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     }
     .video-embed iframe {
       position: absolute;
-      inset: 0;
+      /* Sobe 40px para esconder a barra de controles/logo do Drive */
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       border: none;
       display: block;
+    }
+    /* Bloqueia a área do botão "Abrir no Drive" no topo */
+    .video-embed::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 42px;
+      background: #000;
+      z-index: 2;
+      pointer-events: all;
     }
     .video-info {
       padding: var(--space-5) var(--space-6);
@@ -3042,15 +3059,15 @@
             
             <div class="estat-card">
               <strong>2023</strong>
-              <span>1ª edição — origem do encontro técnico anual</span>
+              <span>1ª edição</span>
             </div>
             <div class="estat-card">
               <strong>2024</strong>
-              <span>2ª edição — expansão de temas e participantes externos</span>
+              <span>2ª edição</span>
             </div>
             <div class="estat-card highlight-estat">
               <strong>2026</strong>
-              <span>3ª edição — 19 a 21 de maio · Hotel Deville, Cuiabá</span>
+              <span>3ª edição — Do solo à colheita: capricho e disciplina para o melhor custo-benefício por hectare</span>
             </div>
           </div>
 
@@ -3064,7 +3081,8 @@
                 <div class="video-embed">
                   <iframe
                     src="https://drive.google.com/file/d/1odIg00T1DNP9N0kuW2E1Lp12k1L_AILC/preview"
-                    allow="autoplay"
+                    allow="autoplay; fullscreen"
+                    sandbox="allow-scripts allow-same-origin allow-presentation allow-forms"
                     allowfullscreen
                     loading="lazy"
                     title="ENCOTEC 2023 — Vídeo da 1ª edição">
@@ -3073,7 +3091,7 @@
                 <div class="video-info">
                   <div>
                     <p class="video-edition">ENCOTEC 2023</p>
-                    <p class="video-label">1ª edição · Origem do encontro técnico anual</p>
+                    <p class="video-label">1ª edição</p>
                   </div>
                   <span class="video-badge">▶ Assistir</span>
                 </div>
@@ -3083,7 +3101,8 @@
                 <div class="video-embed">
                   <iframe
                     src="https://drive.google.com/file/d/1pe4VT7Yfbze_aZBNUqww32aixZQ4Y8Eq/preview"
-                    allow="autoplay"
+                    allow="autoplay; fullscreen"
+                    sandbox="allow-scripts allow-same-origin allow-presentation allow-forms"
                     allowfullscreen
                     loading="lazy"
                     title="ENCOTEC 2024 — Vídeo da 2ª edição">
@@ -3092,7 +3111,7 @@
                 <div class="video-info">
                   <div>
                     <p class="video-edition">ENCOTEC 2024</p>
-                    <p class="video-label">2ª edição · Expansão de temas e participantes externos</p>
+                    <p class="video-label">2ª edição</p>
                   </div>
                   <span class="video-badge">▶ Assistir</span>
                 </div>
